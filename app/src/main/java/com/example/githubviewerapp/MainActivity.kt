@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.githubviewerapp.databinding.ActivityMainBinding
 import com.example.githubviewerapp.network.model.Repo
 import com.example.githubviewerapp.network.model.UserDto
 import com.example.githubviewerapp.network.service.GithubService
@@ -17,10 +18,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 class MainActivity : AppCompatActivity() {
+
+
+    private lateinit var  adapter: UserAdapter
+    private lateinit var  binding : ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        binding  = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.github.com/")
@@ -48,6 +56,13 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(p0: Call<UserDto?>, response: Response<UserDto?>) {
 
                 Log.d("git", "search User : "+response.body().toString())
+
+                val list = response.body()?.items
+
+                adapter = UserAdapter()
+
+                adapter.submitList(list)
+                binding.recyclerView.adapter = adapter
 
             }
 

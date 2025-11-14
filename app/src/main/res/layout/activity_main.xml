@@ -3,49 +3,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:padding="16dp"
+    android:padding="6dp"
     android:layout_width="match_parent"
-    android:background=""
     android:layout_height="match_parent"
+    android:background="#F5F6F8"
     tools:context=".MainActivity">
 
-
-
+    <!-- GitHub Logo -->
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/git_logo"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/github_repo_git_octocat_svgrepo_com"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/text_input_layout"
+        tools:ignore="ContentDescription" />
 
+    <!-- Search Box -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Search user"
-        app:layout_constraintStart_toEndOf="@id/iv_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="55dp"
+        android:hint="Search User"
+        android:backgroundTint="@color/black"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="12dp"
         app:endIconMode="custom"
         app:endIconDrawable="@drawable/baseline_search_24"
-        app:endIconTint="@color/black">
+        app:endIconTint="@color/black"
+        app:boxStrokeColor="#2C2C2C"
+        app:boxStrokeWidth="1dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintStart_toEndOf="@id/iv_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:padding="10dp"
+            tools:text="ismoil" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <!-- Recycler View -->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_search"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/text_input_layout"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        tools:listitem="@layout/item_user"
+        android:layout_marginTop="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
