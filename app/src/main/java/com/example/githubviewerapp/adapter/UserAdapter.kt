@@ -1,4 +1,4 @@
-package com.example.githubviewerapp
+package com.example.githubviewerapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.githubviewerapp.databinding.ItemUserBinding
 import com.example.githubviewerapp.network.model.Item
-import com.example.githubviewerapp.network.model.UserDto
 
-class UserAdapter :
-    ListAdapter<Item, UserAdapter.ViewHolder>(DiffCallback) {
+class UserAdapter(val onClick: (Item) -> Unit) : ListAdapter<Item, UserAdapter.ViewHolder>(DiffCallback) {
 
     object DiffCallback : DiffUtil.ItemCallback<Item>() {
         override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
@@ -41,6 +39,9 @@ class UserAdapter :
 
         fun onBind(user: Item) = with(binding) {
 
+            binding.root.setOnClickListener {
+                onClick(user)
+            }
             // Avatar load
             Glide.with(ivAvatar)
                 .load(user.avatar_url)
@@ -49,20 +50,20 @@ class UserAdapter :
             // Username
             tvUsername.text = user.login
 
-            // Full name
-            tvFullname.text = user.following_url
-
-            // Bio
-            tvBio.text = user.subscriptions_url
-
-            // Location
-            tvLocation.text = user.organizations_url
-
-            // Public repos
-            tvRepoCount.text = user.repos_url
-
-            // Followers
-            tvFollowers.text = user.followers_url
+//            // Full name
+//            tvFullname.text = user.following_url
+//
+//            // Bio
+//            tvBio.text = user.subscriptions_url
+//
+//            // Location
+//            tvLocation.text = user.organizations_url
+//
+//            // Public repos
+//            tvRepoCount.text = user.repos_url
+//
+//            // Followers
+//            tvFollowers.text = user.followers_url
         }
     }
 }

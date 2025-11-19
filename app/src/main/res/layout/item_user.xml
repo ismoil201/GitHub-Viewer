@@ -53,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#666666"
                     android:textSize="15sp"
+                    android:maxLines="1"
                     android:paddingStart="6dp"
                     tools:text="muhiddinovismoil" />
             </LinearLayout>
@@ -64,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
                 android:textSize="14sp"
+                android:maxLines="2"
                 android:layout_marginTop="4dp"
                 tools:text="Full-Stack Developer Node.js + React.js" />
 
@@ -80,6 +82,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#666666"
                     android:textSize="13sp"
+                    android:maxLines="1"
                     tools:text="Uzbekistan, Tashkent" />
 
                 <TextView
